@@ -11,13 +11,28 @@ export default function CreateOrder() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await createOrder({
-      customer_id: Number(customerId),
-      product_id: Number(productId),
-      qty: Number(qty),
-    });
+    try {
+      await createOrder({
+        customer_id: Number(customerId),
+        products: [
+          {
+            product_id: Number(productId),
+            qty: Number(qty),
+          },
+        ],
+      });
 
-    alert("Order created");
+      alert("Order created");
+
+      // reset form
+      setCustomerId("");
+      setProductId("");
+      setQty("");
+
+    } catch (error) {
+      alert("Create order failed");
+      console.error(error);
+    }
   }
 
   return (
@@ -25,6 +40,7 @@ export default function CreateOrder() {
       <h1 className="text-2xl font-bold">Create Order</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-4 w-64">
+
         <input
           className="border p-2"
           placeholder="Customer ID"
@@ -49,6 +65,7 @@ export default function CreateOrder() {
         <button className="bg-green-500 text-white p-2">
           Create
         </button>
+
       </form>
     </div>
   );

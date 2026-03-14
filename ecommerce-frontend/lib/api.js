@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3333/api";
+const API_BASE = "https://ecommerce-api-one-khaki.vercel.app/api";
 
 // Customers
 export async function getCustomers() {
