@@ -13,14 +13,10 @@ export default function CreateOrder() {
 
     try {
       await createOrder({
-        customer_id: Number(customerId),
-        products: [
-          {
-            product_id: Number(productId),
-            qty: Number(qty),
-          },
-        ],
-      });
+  customer_id: Number(customerId),
+  product_id: Number(productId),
+  qty: Number(qty),
+});
 
       alert("Order created");
 
